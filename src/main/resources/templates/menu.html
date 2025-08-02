@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Googol Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-top: 50px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Cores inspiradas na Google, mas personalizadas */
+        .logo span:nth-child(1) { color: #E91E63; }  /* rosa */
+        .logo span:nth-child(2) { color: #3F51B5; }  /* azul escuro */
+        .logo span:nth-child(3) { color: #FF9800; }  /* laranja */
+        .logo span:nth-child(4) { color: #4CAF50; }  /* verde */
+        .logo span:nth-child(5) { color: #9C27B0; }  /* roxo */
+        .logo span:nth-child(6) { color: #009688; }  /* ciano escuro */
+
+        .menu-container {
+            background-color: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        ul.menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.menu li {
+            margin: 15px 0;
+        }
+
+        ul.menu a {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        ul.menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <span>G</span><span>o</span><span>o</span><span>g</span><span>o</span><span>l</span>
+</div>
+
+<div class="menu-container">
+    <ul class="menu">
+        <li><a th:href="@{/search}">Pesquisar</a></li>
+        <li><a th:href="@{/index}">Indexar URL</a></li>
+        <li><a th:href="@{/estatisticas}">Estatísticas</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

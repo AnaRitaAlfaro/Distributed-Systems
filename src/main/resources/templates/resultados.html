@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Pesquisa</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+</head>
+<body>
+
+<div class="content-container">
+    <h1>Resultados</h1>
+
+    <div th:if="${resultados.isEmpty()}">
+        <p>Nenhum resultado encontrado.</p>
+    </div>
+
+    <div th:unless="${resultados.isEmpty()}">
+        <ul>
+            <li th:each="pagina : ${resultados}">
+                <strong th:text="${pagina.titulo != null ? pagina.titulo : 'Sem título'}">Título</strong><br>
+                <a th:href="${pagina.url != null ? pagina.url : '#'}"
+                   th:text="${pagina.url != null ? pagina.url : 'URL indisponível'}">URL</a><br>
+                <em th:text="${pagina.texto != null ? pagina.texto : 'Sem resumo disponível'}">Resumo</em>
+            </li>
+        </ul>
+
+        <div class="pagination">
+            <span th:if="${page > 0}">
+                <a th:href="@{/pesquisar(termo=${termo}, page=${page - 1})}">&laquo; Página anterior</a>
+            </span>
+
+            <span th:if="${page + 1 < totalPages}">
+                <a th:href="@{/pesquisar(termo=${termo}, page=${page + 1})}">Próxima página &raquo;</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <a href="/"><button>Voltar ao Menu</button></a>
+        <a href="/search"><button>Nova Pesquisa</button></a>
+    </div>
+</div>
+
+</body>
+</html>

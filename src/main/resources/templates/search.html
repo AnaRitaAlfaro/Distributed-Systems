@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Googol - Pesquisa</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+</head>
+<body>
+<div class="content-container">
+    <h1>Pesquisar no Googol</h1>
+    <form action="/pesquisar" method="get">
+        <input type="text" name="termo" placeholder="Insira termos de pesquisa" class="input-text" />
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <button class="back-button" onclick="window.location.href='/'">Voltar ao Menu</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Indexar URL</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+</head>
+<body>
+<h1>Indexar Ficheiro/URL</h1>
+
+<form action="#" th:action="@{/index}" method="post">
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url" class="input-text" />
+    <button type="submit">Indexar</button>
+</form>
+
+<div style="margin-top: 30px;">
+    <a href="/"><button class="back-button">Voltar ao Menu</button></a>
+</div>
+</body>
+</html>

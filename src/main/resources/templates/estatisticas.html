@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Estatísticas em Tempo Real</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <style>
+        table { border-collapse: collapse; width: 50%; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+
+
+<h1>Barrels Ativos</h1>
+<table id="barrelTable" class="styled-table">
+    <thead>
+    <tr><th>ID</th><th>Tamanho do Índice</th><th>Tempo de Resposta (ds)</th></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<h2>Top 10 Pesquisas</h2>
+<table id="top10Table" class="styled-table">
+    <thead>
+    <tr><th>Termo</th><th>Frequência</th></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<script>
+    const socket = new SockJS('/websocket');
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, () => {
+
+
+        // Barrels
+        stompClient.subscribe('/topicos/barrels', msg => {
+            const barrels = JSON.parse(msg.body);
+            const tbody = document.querySelector('#barrelTable tbody');
+            tbody.innerHTML = '';
+            barrels.forEach(b => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${b.barrelId}</td><td>${b.tamIndice}</td><td>${b.tempResp}</td>`;
+
+                tbody.appendChild(tr);
+            });
+        });
+        // Top 10 pesquisas
+            stompClient.subscribe('/topicos/top10', msg => {
+            const top10 = JSON.parse(msg.body);
+            const tbody = document.querySelector('#top10Table tbody');
+            tbody.innerHTML = '';
+            top10.forEach(entry => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${entry.termo}</td><td>${entry.frequencia}</td>`;
+                tbody.appendChild(tr);
+            });
+        });
+
+    });
+</script>
+<div style="margin-top: 30px;">
+    <a href="/"><button class="back-button">Voltar ao Menu</button></a>
+</div>
+</body>
+</html>
