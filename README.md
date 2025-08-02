@@ -1,12 +1,12 @@
 # Googol – Search Engine with Spring Boot and RMI
 
-##Description
+## Description
 
 **Googol** is a Java-based search engine that uses **RMI (Remote Method Invocation)** for remote communication and a web interface built with **Spring Boot**. The project allows users to perform searches, index URLs, and view real-time statistics.
 
 ---
 
-##Project Architecture
+## Project Architecture
 
 - **RMI Server**  
   Core component of the search engine, responsible for indexing, searching, and tracking statistics.
@@ -22,7 +22,7 @@
 
 ---
 
-##Requirements
+## Requirements
 
 - Java 17 or higher  
 - Maven 3.8 or higher  
@@ -30,7 +30,7 @@
 
 ---
 
-##How to Run the Project
+## How to Run the Project
 
 1. Navigate to the project directory
 2. Build the application (skipping tests):
